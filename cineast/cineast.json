@@ -1,0 +1,96 @@
+{
+  "database": {
+    "host": "localhost",
+    "selector": "COTTONTAIL",
+    "writer": "COTTONTAIL",
+    "port": 1865,
+    "plaintext": true
+  },
+  "benchmark": {
+    "mode": "OFF",
+    "path": "benchmarks"
+  },
+  "retriever": {
+    "threadPoolSize": 2,
+    "maxResults": 200,
+    "resultsPerModule": 250,
+    "features": {
+      "sphericalharmonicslow": [
+        {"feature": "SphericalHarmonicsLow", "weight": 1.0}
+      ],
+      "sphericalharmonicsdefault": [
+        {"feature": "SphericalHarmonicsDefault", "weight": 1.0}
+      ],
+      "sphericalharmonicshigh": [
+        {"feature": "SphericalHarmonicsHigh", "weight": 1.0}
+      ],
+      "lightfield": [
+        {"feature": "LightfieldFourier", "weight": 1.0},
+        {"feature": "LightfieldZernike", "weight": 2.5}
+      ]
+    }
+  },
+
+  "decoders": {
+    "VIDEO": {
+      "decoder": "FFMpegVideoDecoder",
+      "properties": {
+        "maxFrameWidth": 640,
+        "maxFrameHeight": 480
+      }
+    },
+    "IMAGE": {
+      "decoder": "DefaultImageDecoder",
+      "properties": {
+        "bounds": 1024
+      }
+    },
+    "AUDIO": {
+      "decoder": "FFMpegAudioDecoder",
+      "properties": {
+        "samplerate": 44100,
+        "channels": 2
+      }
+    }
+  },
+
+  "extractor": {
+    "threadPoolSize": 4,
+    "outputLocation": "out"
+  },
+
+  "imagecache": {
+    "softMemoryLimit": 2048,
+    "hardMemoryLimit": 1024
+  },
+
+  "api": {
+    "enableCLI": true,
+    "enableWebsocket": true,
+    "enableWebsocketSecure": false,
+    "enableRest": true,
+    "enableRestSecure": false,
+    "enableLegacy": false,
+    "maxMessageSize": 40960000,
+    "httpPort": 4567,
+    "httpsPort": 4568,
+    "legacyPort": 12345,
+    "threadPoolSize": 12,
+    "serveContent": true,
+    "serveUI": true,
+    "uiLocation": "dist",
+    "thumbnailLocation": "jobs/thumbnails/",
+    "objectLocation": "jobs/data/3d/"
+  },
+
+  "visualization": {
+    "cacheEnabled": false,
+    "cachePath": "cache/art/"
+  },
+
+  "monitoring":{
+    "enablePrometheus": true,
+    "prometheusPort": 4569
+  }
+
+}
